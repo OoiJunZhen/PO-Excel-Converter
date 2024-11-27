@@ -1,0 +1,84 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Style for DataGrid Headers -->
+    <Style x:Key="DataGridHeaderStyle" TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="#1F1F2E"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="5,0,5,0"/>
+        <Setter Property="BorderThickness" Value="0,0,3,2" />
+        <Setter Property="BorderBrush" Value="#848282" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridColumnHeader">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="10,10,0,0">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Style for DataGrid Cells -->
+    <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
+        <Setter Property="Background" Value="#2A2B3D"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Padding" Value="5,2"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Style.Triggers>
+            <!-- Highlight the selected row with a distinct color -->
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#3BAFDA"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="BorderThickness" Value="2.5"/>
+            </Trigger>
+            <!-- Hover effect for cells -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#354052"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Style for DataGrid Rows -->
+    <Style TargetType="DataGridRow">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Style.Triggers>
+            <!-- Row hover effect -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#354052"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- Style for Centering Text in Cells -->
+    <Style x:Key="CenterTextStyle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="TextAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+        <Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="GridLinesVisibility" Value="None"/>
+        <Setter Property="RowBackground" Value="#1F1F2E"/>
+        <Setter Property="AlternatingRowBackground" Value="#2A2B3D"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridHeaderStyle}"/>
+        <Setter Property="CellStyle" Value="{StaticResource DataGridCellStyle}"/>
+        <Setter Property="RowStyle" Value="{StaticResource {x:Type DataGridRow}}"/>
+    </Style>
+</ResourceDictionary>
